@@ -1,5 +1,5 @@
 const test = () => {
-  var home = ['home', 'house'];
+  var home = ["home", "house"];
 };
 
 export { test };

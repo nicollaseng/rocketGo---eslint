@@ -6,14 +6,32 @@ description: Find below instructions to run eslint + prettier locally
 
 ## Let's start
 
-Install eslint dependencies
+Acess
 
 ```
-$ yarn add eslint -D
+package.json
+```
+
+and copy all devDependencies. After on your terminal run
+
+```
+$ yarn
+```
+
+Also copy below script from
+
+```
+package.json
+```
+
+to yours
+
+```
+ "precommit": "pretty-quick --staged"
 ```
 
 {% hint style="info" %}
- you also can use npm 
+you also can use npm
 {% endhint %}
 
 Once finish, create a `.eslintrc.json` file and copy whole from code inside .`eslintrc.json` on repo
@@ -22,154 +40,23 @@ if you lazy just find below respective above JSON
 
 {% code-tabs %}
 {% code-tabs-item title=".eslintrc.json" %}
+
 ```javascript
 
 {
-  "extends": [
-    "prettier",
-    "prettier/react",
-    "plugin:react/recommended"
-  ],
-  "parser": "babel-eslint",
-  "parserOptions": {
-    "ecmaVersion": 2018,
-    "ecmaFeatures": {
-      "impliedStrict": true,
-      "classes": true
-    }
-  },
-  "env": {
-    "browser": true,
-    "node": true,
-    "jquery": true,
-    "jest": true
-  },
+  "extends": ["react-app", "plugin:prettier/recommended"],
   "rules": {
-    "no-debugger": 0,
-    "no-alert": 0,
-    "no-await-in-loop": 0,
-    "no-return-assign": [
-      "error",
-      "except-parens"
-    ],
-    "no-restricted-syntax": [
-      2,
-      "ForInStatement",
-      "LabeledStatement",
-      "WithStatement"
-    ],
-    "no-unused-vars": [
-      0,
-      {
-        "ignoreSiblings": true,
-        "argsIgnorePattern": "res|next|^err"
-      }
-    ],
-    "prefer-const": [
-      "error",
-      {
-        "destructuring": "all"
-      }
-    ],
-    "arrow-body-style": [
-      2,
-      "as-needed"
-    ],
-    "no-unused-expressions": [
-      2,
-      {
-        "allowTaggedTemplates": true
-      }
-    ],
-    "no-param-reassign": [
-      2,
-      {
-        "props": false
-      }
-    ],
-    "no-console": 0,
-    "import/prefer-default-export": 0,
-    "import": 0,
-    "func-names": 0,
-    "space-before-function-paren": 0,
-    "comma-dangle": 0,
-    "max-len": 0,
-    "import/extensions": 0,
-    "no-underscore-dangle": 0,
-    "consistent-return": 0,
-    "react/display-name": 0,
-    "react/no-array-index-key": 0,
-    "react/react-in-jsx-scope": 0,
-    "react/prefer-stateless-function": 0,
-    "react/forbid-prop-types": 0,
-    "react/no-unescaped-entities": 0,
-    "jsx-a11y/accessible-emoji": 0,
-    "react/require-default-props": 0,
-    "react/jsx-filename-extension": [
-      1,
-      {
-        "extensions": [
-          ".js",
-          ".jsx"
-        ]
-      }
-    ],
-    "radix": 0,
-    "no-shadow": [
-      "off",
-      {
-        "hoist": "all",
-        "allow": [
-          "resolve",
-          "reject",
-          "done",
-          "next",
-          "err",
-          "error"
-        ]
-      }
-    ],
-    "quotes": [
-      2,
-      "single",
-      {
-        "avoidEscape": true,
-        "allowTemplateLiterals": true
-      }
-    ],
-    "prettier/prettier": [
-      "error",
-      {
-        "trailingComma": "es5",
-        "singleQuote": true,
-        "printWidth": 80
-      }
-    ],
-    "jsx-a11y/href-no-hash": "off",
-    "jsx-a11y/anchor-has-content": "off",
-    "jsx-a11y/anchor-is-valid": [
-      "off",
-      {
-        "aspects": [
-          "invalidHref"
-        ]
-      }
-    ],
-    "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "warn"
-  },
-  "plugins": [
-    "html",
-    "prettier",
-    "react-hooks"
-  ]
+    "no-unused-vars": "off"
+  }
 }
 
+
 ```
+
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
-if you use vscode search for [**EditorConfig for VS Code**](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig) ****create a file called `.editorconfig`
+if you use vscode search for [**EditorConfig for VS Code**](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig) \*\*\*\*create a file called `.editorconfig`
 
 ```text
 root = true
@@ -186,25 +73,29 @@ insert_final_newline = true
 We are almost finishing. Now open vscode JSON settings and paste code below
 
 ```text
+  {
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.colorTheme": "Dracula",
+    "editor.fontFamily": "Fira Code",
+    "editor.fontLigatures": true,
     "editor.formatOnSave": true,
-    "prettier.eslintIntegration": true,
     "window.zoomLevel": -1,
     "workbench.colorCustomizations": {},
-    // These are all my auto-save configs
-    // turn it off for JS and JSX, we will do this via eslint
     "[javascript]": {
         "editor.formatOnSave": false
     },
-    "[javascriptreact]": {
-        "editor.formatOnSave": false
-    },
-    // tell the ESLint plugin to run on save
-    "eslint.autoFixOnSave": true 
+    "eslint.autoFixOnSave": true,
+    "eslint.alwaysShowStatus": true,
+    "prettier.disableLanguages": [
+        "js"
+    ],
+    "files.autoSave": "onFocusChange"
+}
 ```
 
 last step install Prettier plugin in your vscode [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) and [Eslint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
 
-That's it! We finished eslint + prettier to run react and react native projects! But if you want it to node.js. well done, just copy below `.eslintrc.json` 
+That's it! We finished eslint + prettier to run react and react native projects! But if you want it to node.js. well done, just copy below `.eslintrc.json`
 
 ```text
 {
@@ -241,4 +132,3 @@ That's it! We finished eslint + prettier to run react and react native projects!
 }
 
 ```
-
